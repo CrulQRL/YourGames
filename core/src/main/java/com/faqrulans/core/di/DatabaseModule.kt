@@ -1,0 +1,25 @@
+package com.faqrulans.core.di
+
+import android.content.Context
+import androidx.room.Room
+import com.faqrulans.core.data.source.local.room.DeveloperDao
+import com.faqrulans.core.data.source.local.room.YourGamesDatabase
+import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
+
+@Module
+interface DatabaseModule {
+
+    companion object {
+        @Singleton
+        @Provides
+        fun provideDatabase(context: Context): YourGamesDatabase = Room.databaseBuilder(
+            context,
+            YourGamesDatabase::class.java, "YourGames.db"
+        ).fallbackToDestructiveMigration().build()
+
+        @Provides
+        fun provideDeveloperDao(database: YourGamesDatabase): DeveloperDao = database.developerDao()
+    }
+}
