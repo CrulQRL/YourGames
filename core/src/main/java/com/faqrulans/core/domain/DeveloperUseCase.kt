@@ -1,4 +1,7 @@
 package com.faqrulans.core.domain
 
-class DeveloperUseCase {
+interface DeveloperUseCase {
+
+    suspend fun getDevelopers()
+
 }
