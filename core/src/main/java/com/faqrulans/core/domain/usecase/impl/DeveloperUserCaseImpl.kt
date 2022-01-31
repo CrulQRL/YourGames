@@ -1,4 +1,4 @@
-package com.faqrulans.core.domain.usecase.Impl
+package com.faqrulans.core.domain.usecase.impl
 
 import com.faqrulans.core.domain.repository.DeveloperRepository
 import com.faqrulans.core.domain.usecase.DeveloperUseCase

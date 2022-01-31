@@ -1,7 +1,7 @@
 package com.faqrulans.yourgames.di
 
 import com.faqrulans.core.domain.usecase.DeveloperUseCase
-import com.faqrulans.core.domain.usecase.Impl.DeveloperUserCaseImpl
+import com.faqrulans.core.domain.usecase.impl.DeveloperUserCaseImpl
 import dagger.Binds
 import dagger.Module
 
