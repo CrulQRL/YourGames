@@ -1,0 +1,33 @@
+package com.faqrulans.core.utils
+
+import com.faqrulans.core.data.source.local.entity.DeveloperEntity
+import com.faqrulans.core.data.source.remote.response.ListDeveloperResponse
+import com.faqrulans.core.domain.Developer
+
+object DataMapper {
+
+    fun mapResponsesToEntities(input: ListDeveloperResponse): List<DeveloperEntity> {
+        val tourismList = ArrayList<DeveloperEntity>()
+        input.results.map {
+            val tourism = DeveloperEntity(
+                id = it.id,
+                name = it.name,
+                gamesCount = it.gamesCount,
+                imageBackground = it.imageBackground
+            )
+            tourismList.add(tourism)
+        }
+        return tourismList
+    }
+
+    fun mapEntitiesToDomain(input: List<DeveloperEntity>): List<Developer> =
+        input.map {
+            Developer(
+                id = it.id,
+                name = it.name,
+                gamesCount = it.gamesCount,
+                imageBackground = it.imageBackground
+            )
+        }
+
+}
