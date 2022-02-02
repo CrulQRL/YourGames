@@ -4,7 +4,7 @@ import com.faqrulans.core.data.source.local.LocalDataSource
 import com.faqrulans.core.data.source.remote.RemoteDataSource
 import com.faqrulans.core.data.source.remote.network.ApiResponse
 import com.faqrulans.core.data.source.remote.response.ListDeveloperResponse
-import com.faqrulans.core.domain.Developer
+import com.faqrulans.core.domain.model.Developer
 import com.faqrulans.core.domain.repository.DeveloperRepository
 import com.faqrulans.core.utils.DataMapper
 import kotlinx.coroutines.flow.Flow
