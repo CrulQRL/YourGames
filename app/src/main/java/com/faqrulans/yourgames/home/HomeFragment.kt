@@ -8,11 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.faqrulans.core.data.Resource
 import com.faqrulans.core.ui.UIState
 import com.faqrulans.core.ui.developer.DeveloperAdapter
 import com.faqrulans.core.ui.ViewModelFactory
-import com.faqrulans.yourgames.R
 import com.faqrulans.yourgames.YourGamesApp
 import com.faqrulans.yourgames.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
@@ -47,18 +45,18 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        homeViewModel.developers.observe(viewLifecycleOwner) { developers ->
-            if (developers != null) {
-                when (developers) {
+        homeViewModel.developers.observe(viewLifecycleOwner) { state ->
+            if (state != null) {
+                when (state) {
                     is UIState.Loading -> binding.pbFragmentHome.visibility = View.VISIBLE
                     is UIState.Success -> {
                         binding.pbFragmentHome.visibility = View.GONE
-                        developerAdapter.setData(developers.data)
+                        developerAdapter.setData(state.data)
                         binding.rvHomeDevelopers.visibility = View.VISIBLE
                     }
                     is UIState.Error -> {
                         binding.pbFragmentHome.visibility = View.GONE
-                        Snackbar.make(binding.root, getString(R.string.resource_failed_message), Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(binding.root, getString(state.message!!), Snackbar.LENGTH_LONG).show()
                     }
                 }
             }
