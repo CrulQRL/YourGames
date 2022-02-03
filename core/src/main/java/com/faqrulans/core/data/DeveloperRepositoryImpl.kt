@@ -3,7 +3,7 @@ package com.faqrulans.core.data
 import com.faqrulans.core.data.source.local.LocalDataSource
 import com.faqrulans.core.data.source.remote.RemoteDataSource
 import com.faqrulans.core.data.source.remote.network.ApiResponse
-import com.faqrulans.core.data.source.remote.response.ListDeveloperResponse
+import com.faqrulans.core.data.source.remote.response.DeveloperResponse
 import com.faqrulans.core.domain.model.Developer
 import com.faqrulans.core.domain.repository.DeveloperRepository
 import com.faqrulans.core.utils.DataMapper
@@ -19,7 +19,7 @@ class DeveloperRepositoryImpl @Inject constructor (
 ) : DeveloperRepository {
 
     override fun getDevelopers(): Flow<Resource<List<Developer>>> =
-        object : NetworkBoundResource<List<Developer>, ListDeveloperResponse>() {
+        object : NetworkBoundResource<List<Developer>, List<DeveloperResponse>>() {
             override fun loadFromDB(): Flow<List<Developer>> {
                 return localDataSource.getDevelopers().map {
                     DataMapper.mapEntitiesToDomain(it)
@@ -30,11 +30,11 @@ class DeveloperRepositoryImpl @Inject constructor (
                 return data == null || data.isEmpty()
             }
 
-            override suspend fun createCall(): Flow<ApiResponse<ListDeveloperResponse>> {
+            override suspend fun createCall(): Flow<ApiResponse<List<DeveloperResponse>>> {
                 return remoteDataSource.getAllDeveloper()
             }
 
-            override suspend fun saveCallResult(data: ListDeveloperResponse) {
+            override suspend fun saveCallResult(data: List<DeveloperResponse>) {
                 val developerList = DataMapper.mapResponsesToEntities(data)
                 localDataSource.insertDevelopers(developerList)
             }

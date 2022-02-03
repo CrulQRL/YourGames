@@ -4,7 +4,7 @@ import android.util.Log
 import com.faqrulans.core.BuildConfig
 import com.faqrulans.core.data.source.remote.network.ApiResponse
 import com.faqrulans.core.data.source.remote.network.ApiService
-import com.faqrulans.core.data.source.remote.response.ListDeveloperResponse
+import com.faqrulans.core.data.source.remote.response.DeveloperResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -13,13 +13,18 @@ import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
 
-    suspend fun getAllDeveloper(): Flow<ApiResponse<ListDeveloperResponse>> {
+    suspend fun getAllDeveloper(): Flow<ApiResponse<List<DeveloperResponse>>> {
         return flow {
             try {
-                val response = apiService.getList(BuildConfig.API_KEY)
-                val dataArray = response.results
-                if (dataArray.isNotEmpty()){
-                    emit(ApiResponse.Success(response))
+                val developerResponse = mutableListOf<DeveloperResponse>()
+                val responsePage1 = apiService.getList(BuildConfig.API_KEY, 1)
+                val responsePage2 = apiService.getList(BuildConfig.API_KEY, 2)
+
+                developerResponse.addAll(responsePage1.results)
+                developerResponse.addAll(responsePage2.results)
+
+                if (developerResponse.isNotEmpty()){
+                    emit(ApiResponse.Success(developerResponse))
                 } else {
                     emit(ApiResponse.Empty)
                 }

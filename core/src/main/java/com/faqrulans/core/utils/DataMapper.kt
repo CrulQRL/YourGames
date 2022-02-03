@@ -1,15 +1,15 @@
 package com.faqrulans.core.utils
 
 import com.faqrulans.core.data.source.local.entity.DeveloperEntity
-import com.faqrulans.core.data.source.remote.response.ListDeveloperResponse
+import com.faqrulans.core.data.source.remote.response.DeveloperResponse
 import com.faqrulans.core.domain.model.Developer
 import com.faqrulans.core.ui.developer.DeveloperUI
 
 object DataMapper {
 
-    fun mapResponsesToEntities(input: ListDeveloperResponse): List<DeveloperEntity> {
+    fun mapResponsesToEntities(input: List<DeveloperResponse>): List<DeveloperEntity> {
         val tourismList = ArrayList<DeveloperEntity>()
-        input.results.map {
+        input.map {
             val tourism = DeveloperEntity(
                 id = it.id,
                 name = it.name,
