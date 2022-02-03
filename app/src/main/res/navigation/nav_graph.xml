@@ -8,6 +8,20 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.faqrulans.yourgames.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_to_developerDetailFragment"
+            app:destination="@id/developerDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/developerDetailFragment"
+        android:name="com.faqrulans.yourgames.detail.DeveloperDetailFragment"
+        tools:layout="@layout/fragment_developer_detail"
+        >
+        <argument
+            android:name="developer"
+            app:argType="com.faqrulans.core.ui.developer.DeveloperUI" />
+    </fragment>
+
 </navigation>

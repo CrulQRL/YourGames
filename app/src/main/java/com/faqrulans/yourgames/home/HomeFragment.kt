@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.faqrulans.core.ui.UIState
 import com.faqrulans.core.ui.developer.DeveloperAdapter
@@ -44,6 +45,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        developerAdapter.onItemClick = { selectedData ->
+            val direction = HomeFragmentDirections.actionToDeveloperDetailFragment(selectedData)
+            findNavController().navigate(direction)
+        }
 
         homeViewModel.developers.observe(viewLifecycleOwner) { state ->
             if (state != null) {
