@@ -38,7 +38,7 @@ object DataMapper {
     ): List<GameEntity> =
         input.map {
             GameEntity(
-                id = it.id,
+                id = 0,
                 name = it.name,
                 developer = developerId,
                 released = it.released,
@@ -50,7 +50,6 @@ object DataMapper {
     fun mapGameEntitiesToDomain(input: List<GameEntity>): List<Game> =
         input.map {
             Game(
-                id = it.id,
                 name = it.name,
                 released = it.released,
                 rating = it.rating,

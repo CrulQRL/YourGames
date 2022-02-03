@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "game")
 data class GameEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id")
-    val id: String,
+    val id: Int,
     @ColumnInfo(name = "developer")
     val developer: String,
     @ColumnInfo(name = "name")

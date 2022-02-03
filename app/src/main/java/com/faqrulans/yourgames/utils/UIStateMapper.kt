@@ -19,10 +19,9 @@ object UIStateMapper {
     fun mapGameDomainToUI(input: List<Game>): List<GameUI> =
         input.map {
             GameUI(
-                id = it.id,
                 name = it.name,
                 released = it.released,
-                rating = it.rating,
+                rating = it.rating.toString(),
                 backgroundImage = it.backgroundImage
             )
         }

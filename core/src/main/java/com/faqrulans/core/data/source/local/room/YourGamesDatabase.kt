@@ -6,7 +6,7 @@ import com.faqrulans.core.data.source.local.entity.DeveloperEntity
 import com.faqrulans.core.data.source.local.entity.GameEntity
 
 @Database(entities = [DeveloperEntity::class, GameEntity::class],
-    version = 2,
+    version = 1,
     exportSchema = false)
 abstract class YourGamesDatabase : RoomDatabase() {
 

@@ -54,14 +54,14 @@ class HomeFragment : Fragment() {
         homeViewModel.developers.observe(viewLifecycleOwner) { state ->
             if (state != null) {
                 when (state) {
-                    is UIState.Loading -> binding.pbFragmentHome.visibility = View.VISIBLE
+                    is UIState.Loading -> binding.pbHome.visibility = View.VISIBLE
                     is UIState.Success -> {
-                        binding.pbFragmentHome.visibility = View.GONE
+                        binding.pbHome.visibility = View.GONE
                         developerAdapter.setData(state.data)
                         binding.rvHomeDevelopers.visibility = View.VISIBLE
                     }
                     is UIState.Error -> {
-                        binding.pbFragmentHome.visibility = View.GONE
+                        binding.pbHome.visibility = View.GONE
                         Snackbar.make(binding.root, getString(state.message!!), Snackbar.LENGTH_LONG).show()
                     }
                 }
