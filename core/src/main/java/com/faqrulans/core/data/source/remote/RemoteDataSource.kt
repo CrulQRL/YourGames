@@ -5,6 +5,7 @@ import com.faqrulans.core.BuildConfig
 import com.faqrulans.core.data.source.remote.network.ApiResponse
 import com.faqrulans.core.data.source.remote.network.ApiService
 import com.faqrulans.core.data.source.remote.response.DeveloperResponse
+import com.faqrulans.core.data.source.remote.response.GameResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -31,6 +32,24 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
             } catch (e : Exception){
                 emit(ApiResponse.Error(e.toString()))
                 Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getGames(developerId: String): Flow<ApiResponse<List<GameResponse>>> {
+        return flow {
+            try {
+                val response = apiService.getGames(BuildConfig.API_KEY, developerId)
+                val games = response.results
+
+                if (games.isNotEmpty()){
+                    emit(ApiResponse.Success(games))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.toString()))
             }
         }.flowOn(Dispatchers.IO)
     }

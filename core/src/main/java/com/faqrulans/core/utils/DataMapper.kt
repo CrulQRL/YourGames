@@ -1,27 +1,27 @@
 package com.faqrulans.core.utils
 
 import com.faqrulans.core.data.source.local.entity.DeveloperEntity
+import com.faqrulans.core.data.source.local.entity.GameEntity
 import com.faqrulans.core.data.source.remote.response.DeveloperResponse
+import com.faqrulans.core.data.source.remote.response.GameResponse
 import com.faqrulans.core.domain.model.Developer
+import com.faqrulans.core.domain.model.Game
 import com.faqrulans.core.ui.developer.DeveloperUI
 
 object DataMapper {
 
-    fun mapResponsesToEntities(input: List<DeveloperResponse>): List<DeveloperEntity> {
-        val tourismList = ArrayList<DeveloperEntity>()
+    // Developer
+    fun mapDeveloperResponsesToEntities(input: List<DeveloperResponse>): List<DeveloperEntity> =
         input.map {
-            val tourism = DeveloperEntity(
+            DeveloperEntity(
                 id = it.id,
                 name = it.name,
                 gamesCount = it.gamesCount,
                 imageBackground = it.imageBackground
             )
-            tourismList.add(tourism)
         }
-        return tourismList
-    }
 
-    fun mapEntitiesToDomain(input: List<DeveloperEntity>): List<Developer> =
+    fun mapDeveloperEntitiesToDomain(input: List<DeveloperEntity>): List<Developer> =
         input.map {
             Developer(
                 id = it.id,
@@ -31,12 +31,30 @@ object DataMapper {
             )
         }
 
-    fun mapDomainToUI(input: Developer, backgroundColor: Int): DeveloperUI =
-        DeveloperUI(
-            id = input.id,
-            name = input.name,
-            gamesCount = input.gamesCount,
-            imageBackground = input.imageBackground,
-            backgroundColor = backgroundColor
-        )
+    // Game
+    fun mapGameResponsesToEntities(
+        input: List<GameResponse>,
+        developerId: String
+    ): List<GameEntity> =
+        input.map {
+            GameEntity(
+                id = it.id,
+                name = it.name,
+                developer = developerId,
+                released = it.released,
+                rating = it.rating,
+                backgroundImage = it.backgroundImage
+            )
+        }
+
+    fun mapGameEntitiesToDomain(input: List<GameEntity>): List<Game> =
+        input.map {
+            Game(
+                id = it.id,
+                name = it.name,
+                released = it.released,
+                rating = it.rating,
+                backgroundImage = it.backgroundImage
+            )
+        }
 }

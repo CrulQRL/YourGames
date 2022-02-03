@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="item_list_developer_detail">Detail</string>
+    <string name="developer_games_count">Games Created: %1$s</string>
 </resources>

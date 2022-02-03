@@ -2,6 +2,7 @@ package com.faqrulans.core.di
 
 import android.content.Context
 import com.faqrulans.core.domain.repository.DeveloperRepository
+import com.faqrulans.core.domain.repository.GameRepository
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -17,5 +18,7 @@ interface CoreComponent {
         fun create(@BindsInstance context: Context): CoreComponent
     }
 
-    fun provideRepository() : DeveloperRepository
+    fun provideDeveloperRepository() : DeveloperRepository
+
+    fun provideGameRepository() : GameRepository
 }

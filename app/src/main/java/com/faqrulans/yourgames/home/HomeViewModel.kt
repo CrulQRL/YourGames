@@ -8,6 +8,7 @@ import com.faqrulans.core.ui.UIState
 import com.faqrulans.core.ui.developer.DeveloperUI
 import com.faqrulans.core.utils.DataMapper
 import com.faqrulans.yourgames.R
+import com.faqrulans.yourgames.utils.UIStateMapper
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -42,7 +43,7 @@ class HomeViewModel @Inject constructor(developerUseCase: DeveloperUseCase) : Vi
                 }
             }
 
-            developersUI.add(DataMapper.mapDomainToUI(it.data!![i], color))
+            developersUI.add(UIStateMapper.mapDeveloperDomainToUI(it.data!![i], color))
         }
 
         return@map UIState.Success(developersUI)

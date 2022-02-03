@@ -1,8 +1,8 @@
 package com.faqrulans.core.data.source.remote.network
 
 import com.faqrulans.core.data.source.remote.response.ListDeveloperResponse
+import com.faqrulans.core.data.source.remote.response.ListGameResponse
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -13,9 +13,10 @@ interface ApiService {
         @Query("page") page: Int
     ): ListDeveloperResponse
 
-    @GET("games/{id}")
-    suspend fun getGameDetail(
+    @GET("games")
+    suspend fun getGames(
         @Query("key") key: String,
-        @Path(value = "id") id: Long,
-    ): ListDeveloperResponse
+        @Query("developers") developerId: String,
+        @Query("page_size") pageSize: Int = 5
+    ): ListGameResponse
 }

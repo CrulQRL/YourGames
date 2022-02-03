@@ -14,7 +14,4 @@ data class DeveloperResponse(
 
     @field:SerializedName("image_background")
     val imageBackground: String,
-
-    @field:SerializedName("games")
-    val games: List<GameResponse>
 )

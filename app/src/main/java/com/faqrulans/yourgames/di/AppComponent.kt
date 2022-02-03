@@ -1,6 +1,7 @@
 package com.faqrulans.yourgames.di
 
 import com.faqrulans.core.di.CoreComponent
+import com.faqrulans.yourgames.detail.DeveloperDetailFragment
 import com.faqrulans.yourgames.home.HomeFragment
 import dagger.Component
 
@@ -16,4 +17,6 @@ interface AppComponent {
     }
 
     fun inject(fragment: HomeFragment)
+
+    fun inject(fragment: DeveloperDetailFragment)
 }

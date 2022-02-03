@@ -3,6 +3,7 @@ package com.faqrulans.core.di
 import android.content.Context
 import androidx.room.Room
 import com.faqrulans.core.data.source.local.room.DeveloperDao
+import com.faqrulans.core.data.source.local.room.GameDao
 import com.faqrulans.core.data.source.local.room.YourGamesDatabase
 import dagger.Module
 import dagger.Provides
@@ -21,5 +22,8 @@ interface DatabaseModule {
 
         @Provides
         fun provideDeveloperDao(database: YourGamesDatabase): DeveloperDao = database.developerDao()
+
+        @Provides
+        fun provideGameDao(database: YourGamesDatabase): GameDao = database.gameDao()
     }
 }

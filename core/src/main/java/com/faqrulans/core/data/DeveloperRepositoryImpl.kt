@@ -22,7 +22,7 @@ class DeveloperRepositoryImpl @Inject constructor (
         object : NetworkBoundResource<List<Developer>, List<DeveloperResponse>>() {
             override fun loadFromDB(): Flow<List<Developer>> {
                 return localDataSource.getDevelopers().map {
-                    DataMapper.mapEntitiesToDomain(it)
+                    DataMapper.mapDeveloperEntitiesToDomain(it)
                 }
             }
 
@@ -35,7 +35,7 @@ class DeveloperRepositoryImpl @Inject constructor (
             }
 
             override suspend fun saveCallResult(data: List<DeveloperResponse>) {
-                val developerList = DataMapper.mapResponsesToEntities(data)
+                val developerList = DataMapper.mapDeveloperResponsesToEntities(data)
                 localDataSource.insertDevelopers(developerList)
             }
         }.asFlow()
