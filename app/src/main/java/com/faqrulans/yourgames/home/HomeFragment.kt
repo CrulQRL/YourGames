@@ -57,6 +57,12 @@ class HomeFragment : Fragment() {
 
                     true
                 }
+                R.id.search -> {
+                    val direction = HomeFragmentDirections.actionToSearchFragment()
+                    findNavController().navigate(direction)
+
+                    true
+                }
                 else -> false
             }
         }

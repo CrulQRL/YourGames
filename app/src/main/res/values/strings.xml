@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">YourGames</string>
+    <string name="title_search">Search</string>
+    <string name="menu_title_favorite">Favorite</string>
 
     <string name="resource_failed_message">Data gagal di-load</string>
 </resources>

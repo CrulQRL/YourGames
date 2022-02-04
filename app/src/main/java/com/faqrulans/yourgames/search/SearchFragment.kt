@@ -1,63 +1,54 @@
-package com.faqrulans.favorite
+package com.faqrulans.yourgames.search
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.faqrulans.core.ui.ViewModelFactory
 import com.faqrulans.core.ui.developer.DeveloperAdapter
-import com.faqrulans.favorite.databinding.FragmentFavoriteBinding
-import com.faqrulans.favorite.di.DaggerFavoriteComponent
 import com.faqrulans.yourgames.R
-import com.faqrulans.yourgames.YourGamesApp
+import com.faqrulans.yourgames.databinding.FragmentSearchBinding
 import javax.inject.Inject
 
-class FavoriteFragment: Fragment() {
+class SearchFragment : Fragment() {
 
     @Inject
     lateinit var factory: ViewModelFactory
-    private val favoriteViewModel: FavoriteViewModel by viewModels {
+    private val favoriteViewModel: SearchViewModel by viewModels {
         factory
     }
 
-    private var _binding: FragmentFavoriteBinding? = null
+    private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
     private val developerAdapter by lazy { DeveloperAdapter() }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        val appComponent = (requireActivity().application as YourGamesApp).appComponent
-        DaggerFavoriteComponent.factory().create(appComponent).inject(this)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
+        _binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tbFavorite.setNavigationIcon(R.drawable.ic_arrow_back)
-        binding.tbFavorite.setNavigationOnClickListener {
+        binding.tbSearch.inflateMenu(R.menu.search_menu)
+        (binding.tbSearch.menu.findItem(R.id.search).actionView as SearchView).setIconifiedByDefault(false)
+        (binding.tbSearch.menu.findItem(R.id.search).actionView as SearchView).requestFocus()
+        binding.tbSearch.setNavigationIcon(R.drawable.ic_arrow_back)
+        binding.tbSearch.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
 
-        favoriteViewModel.developers.observe(viewLifecycleOwner) { developers ->
-            developerAdapter.setData(developers)
-        }
-
-        with(binding.rvFavoriteDevelopers) {
+        with(binding.rvSearchDevelopers) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = developerAdapter
@@ -66,7 +57,7 @@ class FavoriteFragment: Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding.rvFavoriteDevelopers.adapter = null
+        binding.rvSearchDevelopers.adapter = null
         _binding = null
     }
 

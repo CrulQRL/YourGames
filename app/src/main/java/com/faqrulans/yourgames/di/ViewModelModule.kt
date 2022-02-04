@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.faqrulans.core.ui.ViewModelFactory
 import com.faqrulans.yourgames.detail.DeveloperDetailViewModel
 import com.faqrulans.yourgames.home.HomeViewModel
+import com.faqrulans.yourgames.search.SearchViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -21,6 +22,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DeveloperDetailViewModel::class)
     abstract fun bindDeveloperDetailViewModel(viewModel: DeveloperDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchViewModel::class)
+    abstract fun bindSearchViewModel(viewModel: SearchViewModel): ViewModel
 
     @AppScope
     @Binds
