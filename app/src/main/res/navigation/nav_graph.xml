@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_to_developerDetailFragment"
             app:destination="@id/developerDetailFragment" />
+        <action
+            android:id="@+id/action_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
     </fragment>
 
     <fragment
@@ -23,5 +26,11 @@
             android:name="developer"
             app:argType="com.faqrulans.core.ui.developer.DeveloperUI" />
     </fragment>
+
+    <fragment
+        app:moduleName="favorite"
+        android:id="@+id/favoriteFragment"
+        android:name="com.faqrulans.favorite.FavoriteFragment"
+        />
 
 </navigation>

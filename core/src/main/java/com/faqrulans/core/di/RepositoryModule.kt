@@ -6,10 +6,12 @@ import com.faqrulans.core.domain.repository.DeveloperRepository
 import com.faqrulans.core.domain.repository.GameRepository
 import dagger.Binds
 import dagger.Module
+import javax.inject.Singleton
 
 @Module(includes = [NetworkModule::class, DatabaseModule::class])
 abstract class RepositoryModule {
 
+    @Singleton
     @Binds
     abstract fun provideDeveloperRepository(
         developerRepositoryImpl: DeveloperRepositoryImpl

@@ -51,6 +51,11 @@ class HomeFragment : Fragment() {
             findNavController().navigate(direction)
         }
 
+//        binding.fabTest.setOnClickListener {
+//            val direction = HomeFragmentDirections.actionToFavoriteFragment()
+//            findNavController().navigate(direction)
+//        }
+
         homeViewModel.developers.observe(viewLifecycleOwner) { state ->
             if (state != null) {
                 when (state) {

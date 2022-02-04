@@ -10,6 +10,7 @@ import dagger.Module
 @Module
 abstract class AppModule {
 
+    @AppScope
     @Binds
     abstract fun provideDeveloperUseCase(developerUserCaseImpl: DeveloperUserCaseImpl): DeveloperUseCase
 
