@@ -16,7 +16,8 @@ object DataMapper {
                 id = it.id,
                 name = it.name,
                 gamesCount = it.gamesCount,
-                imageBackground = it.imageBackground
+                imageBackground = it.imageBackground,
+                isFavorite = false
             )
         }
 
@@ -26,7 +27,8 @@ object DataMapper {
                 id = it.id,
                 name = it.name,
                 gamesCount = it.gamesCount,
-                imageBackground = it.imageBackground
+                imageBackground = it.imageBackground,
+                isFavorite = it.isFavorite
             )
         }
 

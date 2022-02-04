@@ -15,4 +15,10 @@ interface DeveloperDao {
     @Insert
     suspend fun insert(developers: List<DeveloperEntity>)
 
+    @Query("UPDATE developer set is_favorite = :isFavorite where id = :developerId")
+    suspend fun updateFavorite(developerId: String, isFavorite: Boolean): Int
+
+    @Query("SELECT * FROM developer where is_favorite = 1")
+    fun getFavoriteDeveloper(): Flow<List<DeveloperEntity>>
+
 }

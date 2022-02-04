@@ -8,4 +8,8 @@ interface DeveloperUseCase {
 
     fun getDevelopers() : Flow<Resource<List<Developer>>>
 
+    fun getFavoriteDeveloper(): Flow<List<Developer>>
+
+    suspend fun updateFavoriteDeveloper(developerId: String, isFavorite: Boolean): Int
+
 }

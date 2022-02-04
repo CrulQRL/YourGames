@@ -39,4 +39,14 @@ class DeveloperRepositoryImpl @Inject constructor (
                 localDataSource.insertDevelopers(developerList)
             }
         }.asFlow()
+
+    override fun getFavoriteDeveloper(): Flow<List<Developer>> {
+        return localDataSource.getFavoriteDeveloper().map {
+            DataMapper.mapDeveloperEntitiesToDomain(it)
+        }
+    }
+
+    override suspend fun updateFavoriteDeveloper(developerId: String, isFavorite: Boolean): Int {
+        return localDataSource.updateFavorite(developerId, isFavorite)
+    }
 }

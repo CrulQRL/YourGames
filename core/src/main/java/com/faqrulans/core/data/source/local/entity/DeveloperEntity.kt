@@ -16,5 +16,7 @@ data class DeveloperEntity(
     @ColumnInfo(name = "games_count")
     val gamesCount: Int,
     @ColumnInfo(name = "image_background")
-    val imageBackground: String
+    val imageBackground: String,
+    @ColumnInfo(name = "is_favorite", defaultValue = "false")
+    val isFavorite: Boolean
 )

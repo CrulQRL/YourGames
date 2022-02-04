@@ -5,5 +5,10 @@ import com.faqrulans.core.domain.model.Developer
 import kotlinx.coroutines.flow.Flow
 
 interface DeveloperRepository {
+
     fun getDevelopers(): Flow<Resource<List<Developer>>>
+
+    fun getFavoriteDeveloper(): Flow<List<Developer>>
+
+    suspend fun updateFavoriteDeveloper(developerId: String, isFavorite: Boolean): Int
 }

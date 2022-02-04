@@ -13,7 +13,8 @@ object UIStateMapper {
             name = input.name,
             gamesCount = input.gamesCount,
             imageBackground = input.imageBackground,
-            backgroundColor = backgroundColor
+            backgroundColor = backgroundColor,
+            isFavorite = input.isFavorite
         )
 
     fun mapGameDomainToUI(input: List<Game>): List<GameUI> =

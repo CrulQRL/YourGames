@@ -9,5 +9,6 @@ data class DeveloperUI(
     val name: String,
     val gamesCount: Int,
     val imageBackground: String,
-    val backgroundColor: Int
+    val backgroundColor: Int,
+    val isFavorite: Boolean
 ): Parcelable

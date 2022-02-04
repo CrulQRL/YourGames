@@ -18,10 +18,16 @@ class LocalDataSource @Inject constructor(
     fun getGamesByDeveloperId(developerId: String): Flow<List<GameEntity>> =
         gameDao.getGamesByDeveloperId(developerId)
 
+    fun getFavoriteDeveloper() =
+        developerDao.getFavoriteDeveloper()
+
     suspend fun insertDevelopers(developers: List<DeveloperEntity>) =
         developerDao.insert(developers)
 
     suspend fun insertGames(games: List<GameEntity>) =
         gameDao.insert(games)
+
+    suspend fun updateFavorite(developerId: String, isFavorite: Boolean): Int =
+        developerDao.updateFavorite(developerId, isFavorite)
 
 }
