@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.faqrulans.core.ui.UIState
 import com.faqrulans.core.ui.developer.DeveloperAdapter
 import com.faqrulans.core.ui.ViewModelFactory
+import com.faqrulans.yourgames.R
 import com.faqrulans.yourgames.YourGamesApp
 import com.faqrulans.yourgames.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
@@ -46,15 +47,24 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.tbHome.inflateMenu(R.menu.home_menu)
+
+        binding.tbHome.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.favorite -> {
+                    val direction = HomeFragmentDirections.actionToFavoriteFragment()
+                    findNavController().navigate(direction)
+
+                    true
+                }
+                else -> false
+            }
+        }
+
         developerAdapter.onItemClick = { selectedData ->
             val direction = HomeFragmentDirections.actionToDeveloperDetailFragment(selectedData)
             findNavController().navigate(direction)
         }
-
-//        binding.fabTest.setOnClickListener {
-//            val direction = HomeFragmentDirections.actionToFavoriteFragment()
-//            findNavController().navigate(direction)
-//        }
 
         homeViewModel.developers.observe(viewLifecycleOwner) { state ->
             if (state != null) {

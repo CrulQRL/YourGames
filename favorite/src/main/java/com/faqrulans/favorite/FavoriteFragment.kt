@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.faqrulans.core.ui.ViewModelFactory
 import com.faqrulans.core.ui.developer.DeveloperAdapter
@@ -45,6 +46,11 @@ class FavoriteFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.tbFavorite.setNavigationIcon(R.drawable.ic_arrow_back)
+        binding.tbFavorite.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
         favoriteViewModel.developers.observe(viewLifecycleOwner) { developers ->
             developerAdapter.setData(developers)
