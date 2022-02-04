@@ -40,7 +40,6 @@ class GameAdapter : RecyclerView.Adapter<GameAdapter.ListViewHolder>() {
                 txtItemListGameName.text = data.name
                 txtItemListGameDate.text = data.released
                 txtItemListGameRate.text = data.rating
-//                txtItemListGamesCount.text = itemView.context.getString(R.string.developer_games_count, data.gamesCount.toString())
             }
         }
     }

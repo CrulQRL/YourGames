@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.45" />
+        app:layout_constraintGuide_percent="0.43" />
 
     <View
         android:layout_width="match_parent"
@@ -79,14 +79,29 @@
         app:layout_constraintTop_toBottomOf="@id/txt_developer_detail_games_count"
         />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_developer_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:tint="@color/pink_2"
+        app:maxImageSize="36dp"
+        app:backgroundTint="@color/white"
+        app:srcCompat="@drawable/ic_favorite_border"
+        app:fabSize="normal"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_detail_games"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintTop_toBottomOf="@id/txt_developer_detail_games_count"
+        app:layout_constraintTop_toBottomOf="@id/fab_developer_detail"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

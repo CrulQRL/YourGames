@@ -48,7 +48,6 @@ class DeveloperDetailFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -88,7 +87,6 @@ class DeveloperDetailFragment : Fragment() {
             adapter = gameAdapter
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

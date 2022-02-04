@@ -6,7 +6,6 @@ import com.faqrulans.core.data.source.remote.response.DeveloperResponse
 import com.faqrulans.core.data.source.remote.response.GameResponse
 import com.faqrulans.core.domain.model.Developer
 import com.faqrulans.core.domain.model.Game
-import com.faqrulans.core.ui.developer.DeveloperUI
 
 object DataMapper {
 
