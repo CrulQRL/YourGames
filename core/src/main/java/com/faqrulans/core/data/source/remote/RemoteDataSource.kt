@@ -20,9 +20,11 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
             val developerResponse = mutableListOf<DeveloperResponse>()
             val responsePage1 = apiService.getList(BuildConfig.API_KEY, 1)
             val responsePage2 = apiService.getList(BuildConfig.API_KEY, 2)
+            val responsePage3 = apiService.getList(BuildConfig.API_KEY, 3)
 
             developerResponse.addAll(responsePage1.results)
             developerResponse.addAll(responsePage2.results)
+            developerResponse.addAll(responsePage3.results)
 
             if (developerResponse.isNotEmpty()){
                 emit(ApiResponse.Success(developerResponse))
