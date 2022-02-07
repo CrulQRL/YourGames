@@ -57,6 +57,11 @@ class FavoriteFragment: Fragment() {
             developerAdapter.setData(developers)
         }
 
+        developerAdapter.onItemClick = { selectedData ->
+            val direction = FavoriteFragmentDirections.actionToDeveloperDetailFragment(selectedData)
+            findNavController().navigate(direction)
+        }
+
         with(binding.rvFavoriteDevelopers) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)

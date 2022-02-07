@@ -34,7 +34,11 @@
         app:moduleName="favorite"
         android:id="@+id/favoriteFragment"
         android:name="com.faqrulans.favorite.FavoriteFragment"
-        />
+        >
+        <action
+            android:id="@+id/action_to_developerDetailFragment"
+            app:destination="@id/developerDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
