@@ -1,5 +1,6 @@
 package com.faqrulans.yourgames.search
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.faqrulans.core.ui.ViewModelFactory
 import com.faqrulans.core.ui.developer.DeveloperAdapter
 import com.faqrulans.yourgames.R
+import com.faqrulans.yourgames.YourGamesApp
 import com.faqrulans.yourgames.databinding.FragmentSearchBinding
 import javax.inject.Inject
 
@@ -19,7 +21,7 @@ class SearchFragment : Fragment() {
 
     @Inject
     lateinit var factory: ViewModelFactory
-    private val favoriteViewModel: SearchViewModel by viewModels {
+    private val searchViewModel: SearchViewModel by viewModels {
         factory
     }
 
@@ -27,6 +29,11 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val developerAdapter by lazy { DeveloperAdapter() }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as YourGamesApp).appComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,8 +48,20 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tbSearch.inflateMenu(R.menu.search_menu)
-        (binding.tbSearch.menu.findItem(R.id.search).actionView as SearchView).setIconifiedByDefault(false)
-        (binding.tbSearch.menu.findItem(R.id.search).actionView as SearchView).requestFocus()
+        val searchView = binding.tbSearch.menu.findItem(R.id.search).actionView as SearchView
+        searchView.setIconifiedByDefault(false)
+        searchView.requestFocus()
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                searchViewModel.query.value = newText ?: ""
+                return true
+            }
+        })
+
         binding.tbSearch.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.tbSearch.setNavigationOnClickListener {
             findNavController().popBackStack()
@@ -52,6 +71,10 @@ class SearchFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = developerAdapter
+        }
+
+        searchViewModel.developers.observe(viewLifecycleOwner) { developers ->
+            developerAdapter.setData(developers)
         }
     }
 

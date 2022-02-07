@@ -10,5 +10,7 @@ interface DeveloperRepository {
 
     fun getFavoriteDeveloper(): Flow<List<Developer>>
 
+    fun searchDeveloperByName(query: String): Flow<List<Developer>>
+
     suspend fun updateFavoriteDeveloper(developerId: String, isFavorite: Boolean): Int
 }

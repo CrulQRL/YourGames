@@ -5,6 +5,7 @@ import com.faqrulans.core.di.CoreComponent
 import com.faqrulans.core.domain.usecase.DeveloperUseCase
 import com.faqrulans.yourgames.detail.DeveloperDetailFragment
 import com.faqrulans.yourgames.home.HomeFragment
+import com.faqrulans.yourgames.search.SearchFragment
 import dagger.Component
 
 @AppScope
@@ -21,6 +22,8 @@ interface AppComponent {
     fun inject(fragment: HomeFragment)
 
     fun inject(fragment: DeveloperDetailFragment)
+
+    fun inject(fragment: SearchFragment)
 
     fun provideViewModelFactory(): ViewModelProvider.Factory
 

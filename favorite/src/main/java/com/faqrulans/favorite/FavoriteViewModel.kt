@@ -14,31 +14,7 @@ class FavoriteViewModel @Inject constructor(
 ) : ViewModel() {
 
     val developers = developerUseCase.getFavoriteDeveloper().map {
-        val developersUI = mutableListOf<DeveloperUI>()
-
-        for (i in it.indices) {
-            val color: Int = when(i % 5) {
-                0 -> {
-                    R.color.purple_1
-                }
-                1 -> {
-                    R.color.pink_2
-                }
-                2 -> {
-                    R.color.red_1
-                }
-                3 -> {
-                    R.color.purple_2
-                }
-                else -> {
-                    R.color.pink_1
-                }
-            }
-
-            developersUI.add(UIStateMapper.mapDeveloperDomainToUI(it[i], color))
-        }
-
-        return@map developersUI
+        UIStateMapper.mapDeveloperDomainToUI(it)
     }.asLiveData()
 
 }

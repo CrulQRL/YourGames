@@ -5,7 +5,6 @@ import com.faqrulans.core.domain.repository.DeveloperRepository
 import com.faqrulans.core.domain.usecase.DeveloperUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class DeveloperUserCaseImpl @Inject constructor(
     private val developerRepository: DeveloperRepository
@@ -14,6 +13,8 @@ class DeveloperUserCaseImpl @Inject constructor(
     override fun getDevelopers() = developerRepository.getDevelopers()
 
     override fun getFavoriteDeveloper(): Flow<List<Developer>> = developerRepository.getFavoriteDeveloper()
+
+    override fun searchDeveloperByName(query: String): Flow<List<Developer>> = developerRepository.searchDeveloperByName(query)
 
     override suspend fun updateFavoriteDeveloper(developerId: String, isFavorite: Boolean): Int =
         developerRepository.updateFavoriteDeveloper(developerId, isFavorite)

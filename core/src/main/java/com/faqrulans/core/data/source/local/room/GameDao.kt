@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface GameDao {
 
-    @Query("SELECT * FROM game where developer = :developerId")
+    @Query("SELECT * FROM game WHERE developer = :developerId")
     fun getGamesByDeveloperId(developerId: String): Flow<List<GameEntity>>
 
     @Insert

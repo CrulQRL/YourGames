@@ -27,6 +27,8 @@ class LocalDataSource @Inject constructor(
     suspend fun insertGames(games: List<GameEntity>) =
         gameDao.insert(games)
 
+    fun searchDeveloperByName(query: String) = developerDao.searchByName(query)
+
     suspend fun updateFavorite(developerId: String, isFavorite: Boolean): Int =
         developerDao.updateFavorite(developerId, isFavorite)
 

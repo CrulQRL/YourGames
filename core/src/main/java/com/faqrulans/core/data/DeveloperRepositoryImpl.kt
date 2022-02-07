@@ -10,7 +10,6 @@ import com.faqrulans.core.utils.DataMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class DeveloperRepositoryImpl @Inject constructor (
     private val remoteDataSource: RemoteDataSource,
@@ -41,6 +40,12 @@ class DeveloperRepositoryImpl @Inject constructor (
 
     override fun getFavoriteDeveloper(): Flow<List<Developer>> {
         return localDataSource.getFavoriteDeveloper().map {
+            DataMapper.mapDeveloperEntitiesToDomain(it)
+        }
+    }
+
+    override fun searchDeveloperByName(query: String): Flow<List<Developer>> {
+        return localDataSource.searchDeveloperByName(query).map {
             DataMapper.mapDeveloperEntitiesToDomain(it)
         }
     }
