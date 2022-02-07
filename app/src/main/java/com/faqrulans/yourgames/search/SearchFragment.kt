@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -49,8 +50,8 @@ class SearchFragment : Fragment() {
 
         binding.tbSearch.inflateMenu(R.menu.search_menu)
         val searchView = binding.tbSearch.menu.findItem(R.id.search).actionView as SearchView
+        searchView.maxWidth = Integer.MAX_VALUE
         searchView.setIconifiedByDefault(false)
-        searchView.requestFocus()
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
@@ -61,10 +62,17 @@ class SearchFragment : Fragment() {
                 return true
             }
         })
+        searchView.queryHint = "Type developer name"
 
         binding.tbSearch.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.tbSearch.setNavigationOnClickListener {
             findNavController().popBackStack()
+        }
+
+        developerAdapter.onItemClick = { selectedData ->
+            searchView.clearFocus()
+            val direction = SearchFragmentDirections.actionToDeveloperDetailFragment(selectedData)
+            findNavController().navigate(direction)
         }
 
         with(binding.rvSearchDevelopers) {
