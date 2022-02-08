@@ -63,7 +63,7 @@ class SearchFragment : Fragment() {
                 return true
             }
         })
-        searchView.queryHint = "Type developer name"
+        searchView.queryHint = getString(R.string.search_developer_hint)
 
         binding.tbSearch.setNavigationIcon(R.drawable.ic_arrow_back)
         binding.tbSearch.setNavigationOnClickListener {
