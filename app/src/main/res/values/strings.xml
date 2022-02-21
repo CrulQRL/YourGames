@@ -5,4 +5,6 @@
     <string name="search_developer_hint">Type developer name</string>
 
     <string name="resource_failed_message">Data gagal di-load</string>
+    <string name="developer_detail_like">Like Button</string>
+    <string name="game_background_desc">Game Background</string>
 </resources>

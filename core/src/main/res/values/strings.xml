@@ -2,4 +2,6 @@
 <resources>
     <string name="item_list_developer_detail">Detail</string>
     <string name="developer_games_count">Games Created: %1$s</string>
+    <string name="developer_background_desc">Developer Background</string>
+    <string name="developer_detail_desc">Developer Detail Icon</string>
 </resources>
