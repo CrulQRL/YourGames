@@ -6,7 +6,7 @@ import com.faqrulans.core.domain.usecase.DeveloperUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class DeveloperUserCaseImpl @Inject constructor(
+class DeveloperUseCaseImpl @Inject constructor(
     private val developerRepository: DeveloperRepository
 ) : DeveloperUseCase {
 
