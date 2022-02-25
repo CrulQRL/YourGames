@@ -25,13 +25,13 @@ jobs:
           name: Run Build
           command: ./gradlew build
       - store_artifacts:
-          path: app/build/reports
+          path: core/build/reports
           destination: reports
       - run:
           name: Run Tests
           command: ./gradlew lint :core:testDebug
       - store_test_results:
-          path: app/build/test-results
+          path: core/build/test-results
       - store_artifacts:
           path: app/build/outputs/apk/debug/
           destination: artifact-file
