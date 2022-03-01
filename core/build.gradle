@@ -17,6 +17,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
         buildConfigField 'String', 'API_KEY', '"' + API_KEY + '"'
+        buildConfigField 'String', 'PASSPHRASE', '"' + PASSPHRASE + '"'
     }
 
     buildTypes {
@@ -81,4 +82,7 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockito_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlin_coroutine_test"
     testImplementation "androidx.arch.core:core-testing:$core_testing_version"
+
+    implementation "net.zetetic:android-database-sqlcipher:$sql_chipher"
+    implementation "androidx.sqlite:sqlite-ktx:$sqlite_ktx"
 }
