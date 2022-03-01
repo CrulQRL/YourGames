@@ -17,8 +17,10 @@ import com.faqrulans.core.ui.developer.DeveloperAdapter
 import com.faqrulans.yourgames.R
 import com.faqrulans.yourgames.YourGamesApp
 import com.faqrulans.yourgames.databinding.FragmentSearchBinding
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 class SearchFragment : Fragment() {
 
     @Inject
@@ -71,7 +73,6 @@ class SearchFragment : Fragment() {
         }
 
         developerAdapter.onItemClick = { selectedData ->
-            searchView.clearFocus()
             val direction = SearchFragmentDirections.actionToDeveloperDetailFragment(selectedData)
             findNavController().navigate(direction)
         }
