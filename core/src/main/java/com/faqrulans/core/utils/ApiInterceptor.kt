@@ -1,6 +1,5 @@
 package com.faqrulans.core.utils
 
-import android.util.Log
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Request
@@ -13,12 +12,10 @@ class ApiInterceptor : Interceptor {
         val original: Request = chain.request()
         val originalHttpUrl: HttpUrl = original.url
 
-        Log.d("Lol", "ApiKey: ${KeysManager.getApiKey()}")
         val url = originalHttpUrl.newBuilder()
             .addQueryParameter("key", KeysManager.getApiKey())
             .build()
 
-        // Request customization: add request headers
         val requestBuilder: Request.Builder = original.newBuilder()
             .url(url)
 
