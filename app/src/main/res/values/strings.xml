@@ -3,6 +3,7 @@
     <string name="title_search">Search</string>
     <string name="menu_title_favorite">Favorite</string>
     <string name="search_developer_hint">Type developer name</string>
+    <string name="search_empty">Developer tidak ditemukan</string>
 
     <string name="resource_failed_message">Data gagal di-load</string>
     <string name="developer_detail_like">Like Button</string>

@@ -25,7 +25,7 @@ jobs:
           name: Run Build
           command: ./gradlew build
       - run:
-          name: Run Tests
+          name: Run Code Analysis (Detekt)
           command: ./gradlew detekt
       - run:
           name: Run Tests

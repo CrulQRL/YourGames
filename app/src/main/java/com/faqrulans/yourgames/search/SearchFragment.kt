@@ -84,7 +84,8 @@ class SearchFragment : Fragment() {
         }
 
         searchViewModel.developers.observe(viewLifecycleOwner) { developers ->
-            binding.rvSearchDevelopers.isVisible = true
+            binding.rvSearchDevelopers.isVisible = developers.isNotEmpty()
+            binding.txtSearchEmpty.isVisible = developers.isEmpty()
             binding.pbSearch.isGone = true
             developerAdapter.setData(developers)
         }
