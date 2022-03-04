@@ -2,10 +2,10 @@ package com.faqrulans.core.di
 
 import android.content.Context
 import androidx.room.Room
-import com.faqrulans.core.BuildConfig
 import com.faqrulans.core.data.source.local.room.DeveloperDao
 import com.faqrulans.core.data.source.local.room.GameDao
 import com.faqrulans.core.data.source.local.room.YourGamesDatabase
+import com.faqrulans.core.utils.KeysManager
 import dagger.Module
 import dagger.Provides
 import net.sqlcipher.database.SQLiteDatabase
@@ -16,10 +16,11 @@ import javax.inject.Singleton
 interface DatabaseModule {
 
     companion object {
+
         @Singleton
         @Provides
         fun provideDatabase(context: Context): YourGamesDatabase {
-            val passphrase: ByteArray = SQLiteDatabase.getBytes(BuildConfig.PASSPHRASE.toCharArray())
+            val passphrase: ByteArray = SQLiteDatabase.getBytes(KeysManager.getPassphrase().toCharArray())
             val factory = SupportFactory(passphrase)
 
             return Room.databaseBuilder(

@@ -1,6 +1,7 @@
 package com.faqrulans.core.di
 
 import com.faqrulans.core.data.source.remote.network.ApiService
+import com.faqrulans.core.utils.ApiInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.CertificatePinner
@@ -28,6 +29,7 @@ interface NetworkModule {
 
             return OkHttpClient.Builder()
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(ApiInterceptor())
                 .connectTimeout(timeout = 120, unit = TimeUnit.SECONDS)
                 .readTimeout(timeout = 120, unit = TimeUnit.SECONDS)
                 .certificatePinner(certificatePinner)

@@ -1,7 +1,6 @@
 package com.faqrulans.core.data.source.remote
 
 import android.util.Log
-import com.faqrulans.core.BuildConfig
 import com.faqrulans.core.data.source.remote.network.ApiResponse
 import com.faqrulans.core.data.source.remote.network.ApiService
 import com.faqrulans.core.data.source.remote.response.DeveloperResponse
@@ -18,9 +17,9 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
     suspend fun getAllDeveloper(): Flow<ApiResponse<List<DeveloperResponse>>> {
         return flow {
             val developerResponse = mutableListOf<DeveloperResponse>()
-            val responsePage1 = apiService.getList(key = BuildConfig.API_KEY, page = 1)
-            val responsePage2 = apiService.getList(key = BuildConfig.API_KEY, page = 2)
-            val responsePage3 = apiService.getList(key = BuildConfig.API_KEY, page = 3)
+            val responsePage1 = apiService.getList(page = 1)
+            val responsePage2 = apiService.getList(page = 2)
+            val responsePage3 = apiService.getList(page = 3)
 
             developerResponse.addAll(responsePage1.results)
             developerResponse.addAll(responsePage2.results)
@@ -39,7 +38,7 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
 
     suspend fun getGames(developerId: String): Flow<ApiResponse<List<GameResponse>>> {
         return flow {
-            val response = apiService.getGames(BuildConfig.API_KEY, developerId)
+            val response = apiService.getGames(developerId)
             val games = response.results
 
             if (games.isNotEmpty()){

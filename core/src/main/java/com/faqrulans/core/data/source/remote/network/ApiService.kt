@@ -9,13 +9,11 @@ interface ApiService {
 
     @GET("developers")
     suspend fun getList(
-        @Query("key") key: String,
         @Query("page") page: Int
     ): ListDeveloperResponse
 
     @GET("games")
     suspend fun getGames(
-        @Query("key") key: String,
         @Query("developers") developerId: String,
         @Query("page_size") pageSize: Int = 5
     ): ListGameResponse
