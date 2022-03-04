@@ -18,9 +18,9 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
     suspend fun getAllDeveloper(): Flow<ApiResponse<List<DeveloperResponse>>> {
         return flow {
             val developerResponse = mutableListOf<DeveloperResponse>()
-            val responsePage1 = apiService.getList(BuildConfig.API_KEY, 1)
-            val responsePage2 = apiService.getList(BuildConfig.API_KEY, 2)
-            val responsePage3 = apiService.getList(BuildConfig.API_KEY, 3)
+            val responsePage1 = apiService.getList(key = BuildConfig.API_KEY, page = 1)
+            val responsePage2 = apiService.getList(key = BuildConfig.API_KEY, page = 2)
+            val responsePage3 = apiService.getList(key = BuildConfig.API_KEY, page = 3)
 
             developerResponse.addAll(responsePage1.results)
             developerResponse.addAll(responsePage2.results)

@@ -10,7 +10,7 @@ buildscript {
 
     ext.dagger_version = "2.38.1"
 
-    ext.nav_version = "2.4.0"
+    ext.nav_version = "2.4.1"
 
     ext.lifecycle_version = "2.4.1"
 
@@ -29,6 +29,8 @@ buildscript {
     ext.kotlin_coroutine_test = "1.4.2"
     ext.core_testing_version = "2.1.0"
 
+    ext.detekt_version = "1.19.0"
+
     ext.leak_canary = "2.8.1"
 
     repositories {
@@ -38,9 +40,31 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.4"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detekt_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+    }
+}
+
+subprojects {
+    apply plugin: "io.gitlab.arturbosch.detekt"
+
+    detekt {
+        toolVersion = detekt_version
+        failFast = false
+        buildUponDefaultConfig = true
+    }
+
+    tasks.named("detekt").configure {
+        reports {
+            xml.required.set(false)
+            txt.required.set(false)
+            sarif.required.set(false)
+            html {
+                outputLocation.set(file("build/reports/detekt.html"))
+            }
+        }
     }
 }
 

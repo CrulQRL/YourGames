@@ -40,7 +40,9 @@ class DeveloperAdapter : RecyclerView.Adapter<DeveloperAdapter.ListViewHolder>()
                     .centerCrop()
                     .into(ivItemListDeveloper)
                 txtItemListDeveloperName.text = data.name
-                txtItemListGamesCount.text = itemView.context.getString(R.string.developer_games_count, data.gamesCount.toString())
+                txtItemListGamesCount.text = itemView.context.getString(
+                    R.string.developer_games_count, data.gamesCount.toString()
+                )
                 constraintItemListDeveloper.setBackgroundColor(
                     ContextCompat.getColor(binding.root.context, data.backgroundColor)
                 )

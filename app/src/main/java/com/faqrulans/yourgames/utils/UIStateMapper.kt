@@ -12,7 +12,7 @@ object UIStateMapper {
         val developersUI = mutableListOf<DeveloperUI>()
 
         for (i in input.indices) {
-            val color: Int = when(i % 5) {
+            val color: Int = when(i % colorCount) {
                 0 -> {
                     R.color.purple_1
                 }
@@ -56,4 +56,5 @@ object UIStateMapper {
             )
         }
 
+    private const val colorCount = 5
 }

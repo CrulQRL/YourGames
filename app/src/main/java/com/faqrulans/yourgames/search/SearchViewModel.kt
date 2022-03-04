@@ -21,7 +21,7 @@ class SearchViewModel @Inject constructor(
     val query = MutableStateFlow("")
 
     val developers = query
-        .debounce(500)
+        .debounce(timeoutMillis = 500)
         .distinctUntilChanged()
         .flatMapLatest {
             Log.d("Search", "Query : $it")

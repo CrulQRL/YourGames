@@ -83,9 +83,13 @@ class DeveloperDetailFragment : Fragment() {
 
         detailViewModel.isFavorite.observe(viewLifecycleOwner) { isFavorite ->
             if (isFavorite) {
-                binding.fabDeveloperDetail.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite))
+                binding.fabDeveloperDetail.setImageDrawable(
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite)
+                )
             } else {
-                binding.fabDeveloperDetail.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite_border))
+                binding.fabDeveloperDetail.setImageDrawable(
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite_border)
+                )
             }
         }
 

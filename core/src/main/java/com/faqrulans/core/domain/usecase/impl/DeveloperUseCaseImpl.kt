@@ -14,7 +14,8 @@ class DeveloperUseCaseImpl @Inject constructor(
 
     override fun getFavoriteDeveloper(): Flow<List<Developer>> = developerRepository.getFavoriteDeveloper()
 
-    override fun searchDeveloperByName(query: String): Flow<List<Developer>> = developerRepository.searchDeveloperByName(query)
+    override fun searchDeveloperByName(query: String): Flow<List<Developer>> =
+        developerRepository.searchDeveloperByName(query)
 
     override suspend fun updateFavoriteDeveloper(developerId: String, isFavorite: Boolean): Int =
         developerRepository.updateFavoriteDeveloper(developerId, isFavorite)

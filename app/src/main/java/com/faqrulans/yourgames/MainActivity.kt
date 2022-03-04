@@ -11,14 +11,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q &&
-            isTaskRoot &&
-            supportFragmentManager.primaryNavigationFragment?.childFragmentManager?.backStackEntryCount ?: 0 == 0 &&
-            supportFragmentManager.backStackEntryCount == 0
-        ) {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q && isCurrentTaskRoot()) {
             finishAfterTransition()
         } else {
             super.onBackPressed()
         }
+    }
+
+    private fun isCurrentTaskRoot() : Boolean {
+        return isTaskRoot &&
+                supportFragmentManager.primaryNavigationFragment?.childFragmentManager?.backStackEntryCount ?: 0 == 0 &&
+                supportFragmentManager.backStackEntryCount == 0
     }
 }

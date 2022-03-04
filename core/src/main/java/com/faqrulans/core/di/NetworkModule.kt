@@ -28,8 +28,8 @@ interface NetworkModule {
 
             return OkHttpClient.Builder()
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .connectTimeout(120, TimeUnit.SECONDS)
-                .readTimeout(120, TimeUnit.SECONDS)
+                .connectTimeout(timeout = 120, unit = TimeUnit.SECONDS)
+                .readTimeout(timeout = 120, unit = TimeUnit.SECONDS)
                 .certificatePinner(certificatePinner)
                 .build()
         }
