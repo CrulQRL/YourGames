@@ -1,6 +1,5 @@
 package com.faqrulans.yourgames.search
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.faqrulans.core.domain.usecase.DeveloperUseCase
@@ -24,7 +23,6 @@ class SearchViewModel @Inject constructor(
         .debounce(timeoutMillis = 500)
         .distinctUntilChanged()
         .flatMapLatest {
-            Log.d("Search", "Query : $it")
             useCase.searchDeveloperByName(it).map { developers ->
                 UIStateMapper.mapDeveloperDomainToUI(developers)
             }
