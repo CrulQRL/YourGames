@@ -68,7 +68,7 @@ class FavoriteFragment: Fragment() {
 
         with(binding.rvFavoriteDevelopers) {
             layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
+            itemAnimator = null
             adapter = developerAdapter
         }
     }

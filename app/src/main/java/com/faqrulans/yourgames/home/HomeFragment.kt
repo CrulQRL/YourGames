@@ -91,7 +91,7 @@ class HomeFragment : Fragment() {
 
         with(binding.rvHomeDevelopers) {
             layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
+            itemAnimator = null
             adapter = developerAdapter
         }
     }

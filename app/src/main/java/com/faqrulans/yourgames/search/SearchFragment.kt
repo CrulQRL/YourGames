@@ -79,7 +79,7 @@ class SearchFragment : Fragment() {
 
         with(binding.rvSearchDevelopers) {
             layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
+            itemAnimator = null
             adapter = developerAdapter
         }
 

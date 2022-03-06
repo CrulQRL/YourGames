@@ -16,9 +16,26 @@ class DeveloperAdapter : RecyclerView.Adapter<DeveloperAdapter.ListViewHolder>()
 
     fun setData(newListData: List<DeveloperUI>?) {
         if (newListData == null) return
-        listData.clear()
-        listData.addAll(newListData)
-        notifyDataSetChanged()
+        when {
+            listData.isEmpty() -> {
+                listData.addAll(newListData)
+                notifyItemRangeInserted(0, newListData.size)
+            }
+            newListData.size == listData.size -> {
+                newListData.forEachIndexed { index, developerUI ->
+                    if (developerUI.isFavorite != listData[index].isFavorite) {
+                        listData[index] = developerUI
+                        notifyItemChanged(index)
+                    }
+                }
+            }
+            else -> {
+                listData.clear()
+                notifyItemRangeRemoved(0, listData.size)
+                listData.addAll(newListData)
+                notifyItemRangeInserted(0, newListData.size)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
